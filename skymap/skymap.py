@@ -538,12 +538,12 @@ def tiles2asdf(theta, phi, ramin, ramax, decmin, decmax,pixsize=0.055, cellsize=
         ra0_, dec0_ = round(ra0), round(np.abs(dec0))
         # Fields for tiles
         tile['index'] = itile
-        tile['ra_tangent'] = '{0:.10f}'.format(ra0)
-        tile['dec_tangent'] = '{0:.10f}'.format(dec0)
-        tile['ra_min'] = '{0:.10f}'.format(angle360(ramin_))
-        tile['ra_max'] = '{0:.10f}'.format(angle360(ramax_))
-        tile['dec_min'] = '{0:.10f}'.format(decmin_)
-        tile['dec_max'] = '{0:.10f}'.format(decmax_)       
+        tile['ra_tangent'] = '{0:.17g}'.format(ra0)
+        tile['dec_tangent'] = '{0:.17g}'.format(dec0)
+        tile['ra_min'] = '{0:.17g}'.format(angle360(ramin_))
+        tile['ra_max'] = '{0:.17g}'.format(angle360(ramax_))
+        tile['dec_min'] = '{0:.17g}'.format(decmin_)
+        tile['dec_max'] = '{0:.17g}'.format(decmax_)       
         tile['skycell_start'] = len(cells)     # First cell index
         tile['x_tangent'] = x0t
         tile['y_tangent'] = y0t
@@ -558,21 +558,21 @@ def tiles2asdf(theta, phi, ramin, ramax, decmin, decmax,pixsize=0.055, cellsize=
             # This is done to avoid signs in the x,y coordinates of a cell
             x0_, y0_ = 50+row[idx_, idy_], 50+col[idx_, idy_]
             cell[icell]['name'] = namefmt.format(ra0_, dsign, dec0_, x0_, y0_)
-            cell[icell]['ra_center'] = '{0:.10f}'.format(angle360(a0[idx_, idy_])) # cell center
-            cell[icell]['dec_center'] = '{0:.10f}'.format(d0[idx_, idy_])
+            cell[icell]['ra_center'] = '{0:.17g}'.format(angle360(a0[idx_, idy_])) # cell center
+            cell[icell]['dec_center'] = '{0:.17g}'.format(d0[idx_, idy_])
             cell[icell]['orientat'] = ra0 - a0[idx_, idy_] # orientation wrt tile
             xpix = x0t - x0[idx_, idy_] + npix
             ypix = y0t - y0[idx_, idy_] + npix
             cell[icell]['x_tangent'] = xpix # position of tile center
             cell[icell]['y_tangent'] = ypix
-            cell[icell]['ra_corn1'] = '{0:.10f}'.format(angle360(a1e[idx_, idy_]))
-            cell[icell]['dec_corn1'] = '{0:.10f}'.format(d1e[idx_, idy_])
-            cell[icell]['ra_corn2'] = '{0:.10f}'.format(angle360(a2e[idx_, idy_]))
-            cell[icell]['dec_corn2'] = '{0:.10f}'.format(d2e[idx_, idy_])
-            cell[icell]['ra_corn3'] = '{0:.10f}'.format(angle360(a3e[idx_, idy_]))
-            cell[icell]['dec_corn3'] = '{0:.10f}'.format(d3e[idx_, idy_])
-            cell[icell]['ra_corn4'] = '{0:.10f}'.format(angle360(a4e[idx_, idy_]))
-            cell[icell]['dec_corn4'] = '{0:.10f}'.format(d4e[idx_, idy_])
+            cell[icell]['ra_corn1'] = '{0:.17g}'.format(angle360(a1e[idx_, idy_]))
+            cell[icell]['dec_corn1'] = '{0:.17g}'.format(d1e[idx_, idy_])
+            cell[icell]['ra_corn2'] = '{0:.17g}'.format(angle360(a2e[idx_, idy_]))
+            cell[icell]['dec_corn2'] = '{0:.17g}'.format(d2e[idx_, idy_])
+            cell[icell]['ra_corn3'] = '{0:.17g}'.format(angle360(a3e[idx_, idy_]))
+            cell[icell]['dec_corn3'] = '{0:.17g}'.format(d3e[idx_, idy_])
+            cell[icell]['ra_corn4'] = '{0:.17g}'.format(angle360(a4e[idx_, idy_]))
+            cell[icell]['dec_corn4'] = '{0:.17g}'.format(d4e[idx_, idy_])
             # Concatenate cells to the cells from previous tiles
         cells = np.concatenate([cells, cell])
         tile['skycell_end'] = len(cells)       # Last cell index
